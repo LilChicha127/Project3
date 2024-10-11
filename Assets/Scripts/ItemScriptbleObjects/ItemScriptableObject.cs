@@ -8,7 +8,6 @@ public class ItemScriptableObject : ScriptableObject
 {
     
     [SerializeField] public GameObject _prefab;
-    [SerializeField] private Sprite _sprite;
     [SerializeField] public int indexForAW;
     
 }

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Guns : MonoBehaviour, ICloseWeapon
+public class Guns : MonoBehaviour, IWeapon
 {
 
     public GameObject ammoGO;
@@ -15,8 +15,10 @@ public class Guns : MonoBehaviour, ICloseWeapon
     private Transform _cam;
     public bool pistol = true;
     public int bullets { get; set; }
+    public AudioSource sound3,sound0;
     private void Start()
     {
+        
         _cam = FindAnyObjectByType<CameraMovement>().transform;
         bullets = gameObject.GetComponent<Item>().Bullets;
         if (pistol)
@@ -25,6 +27,8 @@ public class Guns : MonoBehaviour, ICloseWeapon
         {
             dulo = GameObject.Find("duloShotgun").transform;
         }
+        sound3 = FindAnyObjectByType<SoundLogic>().sounds[3];
+        sound0 = FindAnyObjectByType<SoundLogic>().sounds[0];
     }
     public void Attack()
     {
@@ -44,11 +48,11 @@ public class Guns : MonoBehaviour, ICloseWeapon
 
         if (pistol)
         {
-            FindAnyObjectByType<SoundLogic>().sounds[3].Play();
+            sound3.Play();
         }
         else
         {
-            FindAnyObjectByType<SoundLogic>().sounds[0].Play();
+            sound0.Play();
         }
         await Task.Delay(2000);
         if(ammoGO != null)

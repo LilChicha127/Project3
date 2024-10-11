@@ -10,9 +10,9 @@ public class Damager : MonoBehaviour
     {
         if (other.CompareTag("enemy"))
         {
-            if (other.GetComponentInParent<EnemyMove>() != null)
+            if (other.GetComponentInParent<Enemy>() != null)
             {
-                other.GetComponentInParent<EnemyMove>().Damage(damage);
+                other.GetComponentInParent<Enemy>().TakeDamage(damage);
                 Destroy(gameObject);
             }
             else
@@ -24,6 +24,7 @@ public class Damager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Character>().Lose();
+            Destroy(gameObject);
         }
         else  if (other){ Destroy(gameObject); }
     }

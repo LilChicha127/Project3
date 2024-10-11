@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 
 
-public class CameraMovement : MonoBehaviour, ICamera
+public class CameraMovement : MonoBehaviour
 {
     public float mouseSensitivity;
     public Transform _player;
@@ -27,7 +27,10 @@ public class CameraMovement : MonoBehaviour, ICamera
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    
+    private void Update()
+    {
+        CameraLogic();
+    }
     public void CameraLogic()
     {
         var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));

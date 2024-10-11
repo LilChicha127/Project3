@@ -4,15 +4,20 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MeleeWeaponLogic : MonoBehaviour, ICloseWeapon
+public class MeleeWeaponLogic : MonoBehaviour, IWeapon
 {
     public Animator anim;
-  
+    private AudioSource sound5,sound1;
+    private void Start()
+    {
+        sound5 = FindAnyObjectByType<SoundLogic>().sounds[5];
+        sound1 = FindAnyObjectByType<SoundLogic>().sounds[1];
+    }
     public  void Attack()
     { 
        
         anim.SetTrigger("_Attack");
-        FindAnyObjectByType<SoundLogic>().sounds[5].Play();
+        sound5.Play();
 
     }
     public void Damage()
@@ -22,8 +27,8 @@ public class MeleeWeaponLogic : MonoBehaviour, ICloseWeapon
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
         if(Physics.Raycast(ray, out hit, 10f) && hit.collider.CompareTag("enemy"))
         {
-            FindAnyObjectByType<SoundLogic>().sounds[1].Play();
-            hit.collider.gameObject.GetComponentInParent<EnemyMove>().Damage(100);
+            sound1.Play();
+            hit.collider.gameObject.GetComponentInParent<Enemy>().TakeDamage(100);
             //
         }
     }

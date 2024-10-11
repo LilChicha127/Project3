@@ -12,14 +12,14 @@ public class IinputController : MonoBehaviour
 
 
     public AllWeapons Allweapons;
-    public List<ICloseWeapon> closeWeapon;
+    public List<IWeapon> closeWeapon;
     public List<Granade> granade;
     public int gr = 3;
     private int speed = 5;
     public bool canInput = true;
     private void Awake()
     {
-        closeWeapon = new List<ICloseWeapon>();
+        closeWeapon = new List<IWeapon>();
         Allweapons = FindAnyObjectByType<AllWeapons>();
     }
     public void Start()
@@ -38,6 +38,7 @@ public class IinputController : MonoBehaviour
     private void Update()       // не совсем все инкапсулированно но да
     {
         character.Move(speed);
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             menu.OpenOrCloseMenu(true);
@@ -58,7 +59,7 @@ public class IinputController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Allweapons.weapons[Tempik.chaseWeapon].GetComponent<ICloseWeapon>().Attack();
+                Allweapons.weapons[Tempik.chaseWeapon].GetComponent<IWeapon>().Attack();
                
 
             }

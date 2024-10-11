@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class CanvasUpdater : MonoBehaviour, ICanvas
+public class CanvasUpdater : MonoBehaviour
 {
 
     public Character character;
@@ -16,6 +16,10 @@ public class CanvasUpdater : MonoBehaviour, ICanvas
     private void Start()
     {
         guns = FindAnyObjectByType<Guns>();
+    }
+    private void Update()
+    {
+        bullUpdate();
     }
     public void bullUpdate()
     {

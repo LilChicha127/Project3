@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Character : MonoBehaviour, InterfaceCharacter
+public class Character : MonoBehaviour
 {
     private Rigidbody rb;
     
@@ -11,7 +11,7 @@ public class Character : MonoBehaviour, InterfaceCharacter
     public int Health = 3;
     public float cd = 10;
     private GameObject loseSc;
-    private int scene = 0;
+    
     public float slowdownFactor = 20;
     private void Start()
     {

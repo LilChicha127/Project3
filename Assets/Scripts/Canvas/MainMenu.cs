@@ -7,9 +7,10 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject Menu,soundOf,soundOn;
     public YandexGame YG;
+    private IinputController inputController;
    private void Start()
     {
-        
+        inputController = FindAnyObjectByType<IinputController>();
         Menu.SetActive(false);
         if (Tempik.soundVol == 0)
         {
@@ -22,7 +23,7 @@ public class MainMenu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
-        FindAnyObjectByType<IinputController>().canInput = true;
+        inputController.canInput = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void OpenOrCloseMenu(bool open)
@@ -31,7 +32,7 @@ public class MainMenu : MonoBehaviour
         if(open == true)
         {
             Cursor.lockState = CursorLockMode.None;
-            FindAnyObjectByType<IinputController>().canInput = false;
+            inputController.canInput = false;
             Time.timeScale = 0;
 
 
@@ -40,7 +41,7 @@ public class MainMenu : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
-            FindAnyObjectByType<IinputController>().canInput = true;
+            inputController.canInput = true;
         }
     }
     

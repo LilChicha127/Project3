@@ -8,6 +8,7 @@ public class LogicMainMenu : MonoBehaviour
     public List<GameObject> weaponButt,granadeButt,lvls;
     public GameObject startButt;
     private bool chaselvl = false;
+    private AudioSource sound4;
     private void Awake()
     {
         Debug.Log("Awake");
@@ -16,6 +17,7 @@ public class LogicMainMenu : MonoBehaviour
 
     private void Start()
     {
+        sound4 = FindAnyObjectByType<SoundLogic>().sounds[2];
         Debug.Log("Start");
         Cursor.lockState = CursorLockMode.None;
         
@@ -64,7 +66,7 @@ public class LogicMainMenu : MonoBehaviour
                 granadeButt[i].GetComponent<Image>().color = Color.white;
         }
     }
-    public void WeaponUpd()
+    public void WeaponUpd()   // логика открытия оружия
     {
         if(Tempik.tempScene > 1)
         {
@@ -79,7 +81,7 @@ public class LogicMainMenu : MonoBehaviour
             weaponButt[3].GetComponent<Button>().interactable = true;
         }
     }
-    public void GranadeUpd()
+    public void GranadeUpd() // логика открытия гранат
     {
         if (Tempik.tempScene > 5)
         {
@@ -90,7 +92,7 @@ public class LogicMainMenu : MonoBehaviour
             granadeButt[1].GetComponent<Button>().interactable = true;
         }
     }
-    public void lvlsUpd()
+    public void lvlsUpd()  // логика обновления уровней
     {
         if (chaselvl)
         {
@@ -104,6 +106,6 @@ public class LogicMainMenu : MonoBehaviour
     }
     public void buttClickSound()
     {
-        FindAnyObjectByType<SoundLogic>().sounds[2].Play();
+        sound4.Play();
     }
 }
